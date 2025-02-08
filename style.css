@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(9, 8, 32);
+}
+
+.countdown-container {
+    text-align: center;
+    margin: 15vw 15vh;
+    padding: 80px;
+    background-color: black;
+    border-radius: 20px;
+    /* overflow: hidden; */
+    /* box-shadow: 0px 25px 20px rgb(101, 30, 182); */
+    position: relative;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.countdown-container::after, .countdown-container::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 70%, rgb(61, 87, 255));
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 6px;
+    border-radius: 20px;
+    animation: 3s spin linear infinite;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+.countdown-container::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+h1 {
+    font-family: "Chakra Petch", serif;
+    font-size: 4vw;
+    color: white;
+}
+
+#countdown {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 50px;
+}
+
+#days, #hours, #minutes, #seconds {
+    flex: 1;
+    background-color: rgb(18, 18, 59);
+    color: white;
+    padding: 30px;
+    border-radius: 9px;
+    font-family: "Kumar One", serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width:768px) and (max-width: 1280px) {
+#countdown {
+    flex-direction: column;
+    padding: 30px 80px;
+    gap: 20px;
+}
+
+#days, #hours, #minutes, #seconds {
+    padding: 40px;
+    justify-content: center;
+    text-align: center;
+}
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .countdown-container {
+        margin: 8vw 8vh;
+    }
+
+    #countdown {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
